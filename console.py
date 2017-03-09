@@ -115,8 +115,11 @@ class Console:
 		o = OCR() 
 		imgs = o.getSolution(str(temp))
 		if imgs != None:
-			user = jsons['username']
-			winchance = jsons['winchance']
+			try:
+				user = jsons['username']
+				winchance = jsons['winchance']
+			except TypeError:
+				return False
 			try:
 				if not "?" in str(winchance):
 					fwlevel = jsons['fw']

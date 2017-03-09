@@ -71,7 +71,10 @@ class OCR:
 		return im			
 
 	def getSolution(self, response):
-		string = response.split(',')[0].split('{"img":"')[1].split('"')[0]
+		try:
+			string = response.split(',')[0].split('{"img":"')[1].split('"')[0]
+		except IndexError:
+			return False
 		possies = []
 		for i1 in range(1,7):
 			possies.append(response.split(',')[i1].split(':')[1])
