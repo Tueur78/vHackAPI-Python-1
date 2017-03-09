@@ -4,7 +4,7 @@ Vhack API written in Python 2.7.
 The app is dev mode.  
 No return exactly great output thanx  
   
-Edit main.py line 23  
+Edit main.py line 17  
 Replace username and password for your login details.  
 
 External dependencies you'll need include:
