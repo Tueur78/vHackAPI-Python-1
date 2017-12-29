@@ -65,6 +65,11 @@ For launching on Linux distros:
 >or  
 >$ ./main.py   
 
+For easy install do the following:
+>$ cd ~/Downloads
+>$ wget https://raw.githubusercontent.com/AtjonTV/vHackXTBot-Python/install/install.sh
+>$ sudo sh install.sh
+
 For Windows:
 ```
 Just run the main.exe enter your username and the password and launch

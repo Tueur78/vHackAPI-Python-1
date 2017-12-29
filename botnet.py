@@ -100,12 +100,12 @@ class Botnet:
         logger.info("Prepare attempting to upgrade bot net PC's "+ hostname + " [" + ofwhat + "]")
         get_infobot = self.getInfo()
 
-        if (int(get_infobot['data'][count]['strength']) == 3000):
+        if (int(get_infobot['data'][count]['strength']) >= 3000):
             logger.info("bot is complet [max strength 3000] " + hostname)
             return True
 
         if (int(get_infobot['data'][count]['running']) == 0): 
-            new_bal = self.upgradesinglebot(hostname, ofwhat)
+            new_bal = self.upgradesinglebot(hostname, ofwhat, count)
             if new_bal:
                 logger.info("wait botnet update working for " + hostname + "...")
                 return True
@@ -132,7 +132,7 @@ class Botnet:
         temp = self.ut.requestString(self.username, self.password, self.uhash, "vh_botnetInfo.php")
         return temp
     
-    def upgradesinglebot(self, hostname, ofwhat):
+    def upgradesinglebot(self, hostname, ofwhat, id):
         """
         Check if there is enough money to upgrade a botnet PC.
         Cycle through and upgrade until no money.
@@ -142,21 +142,21 @@ class Botnet:
         logger.info("Prepare attempting to upgrade bot net PC's "+ hostname + " [" + ofwhat + "]")
         get_infobot = self.getInfo()
         
-        if (int(get_infobot['data'][count]['strength']) == 3000):
+        if (int(get_infobot['data'][id]['strength']) == 3000):
             logger.info("bot is complet [max strength 3000] " + hostname)
             return True
 
-        if (int(get_infobot['data'][count]['running']) == 0 and int(get_infobot['energy']) > 0): 
-            new_bal = self.upgradesinglebot(hostname, ofwhat)
+        if (int(get_infobot['data'][id]['running']) == 0 and int(get_infobot['energy']) > 0): 
+            new_bal = self.upgradesinglebot(hostname, ofwhat, id)
             if new_bal:
                 logger.info("wait botnet update working for " + hostname + "...")
                 return True
 
-        elif (int(get_infobot['energy']) > 0):
+        elif (int(get_infobot['energy']) <= 0):
             logger.info("your are not energy for update " + hostname + " :(")
             return False
 
-        elif (int(get_infobot['data'][count]['running']) == 1):
+        elif (int(get_infobot['data'][id]['running']) == 1):
             logger.info(hostname + " running update please wait...")
             return False
 
